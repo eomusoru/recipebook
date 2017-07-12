@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 
 import { Recipe } from './recipe.model'; 
@@ -6,6 +7,8 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable() 
 export class RecipeService {
+    recipesChanged = new Subject<Recipe[]>();
+
     private recipes: Recipe[] = [
         new Recipe(
             'Grilled Asparagus and Shiitake Tacos',
@@ -42,5 +45,18 @@ export class RecipeService {
 
     addIngredients(ingredients: Ingredient[]){
         this.shopListServ.addIngredients(ingredients);
+    }
+
+    addRecipe(recipe: Recipe){
+        this.recipes.push(recipe);
+
+        // set an observer of type Subject and inform that a new Recipe was added, and provide a new fresh .slice copy of the recipe FormArray
+        // same for updateRecipe method
+        this.recipesChanged.next(this.recipes.slice()); 
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe){
+        this.recipes[index] = newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
     }
 }
