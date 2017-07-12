@@ -34,5 +34,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   onEditItem(index: number){
     this.shoppingListService.startedEditing.next(index); // emit the new values of the index using startedEditing subscription from ShoppingListService
+    
   }
 }
