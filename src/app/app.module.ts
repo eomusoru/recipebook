@@ -25,6 +25,8 @@ import { DataStorageService } from './shared/data-storage.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 
+import { LocalStorageModule } from 'angular-2-local-storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,10 @@ import { AuthService } from './auth/auth.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LocalStorageModule.withConfig({
+        storageType: 'localStorage'
+    })
   ],
   providers: [
     ShoppingListService, 

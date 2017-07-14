@@ -1,3 +1,5 @@
+import { AuthService } from './auth/auth.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 
@@ -8,6 +10,9 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit{
   loadedFeature = 'recipe';
+  
+  constructor(private localStorageService: LocalStorageService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     // we need to pass the values from web setup of firebase
@@ -16,6 +21,10 @@ export class AppComponent implements OnInit{
       authDomain: "recipebook-f9c72.firebaseapp.com",
     });
     
+    // console.log(this.localStorageService.get('webStorage.firebase'));
+    // console.log(this.localStorageService);
+    
+
   }
   onNavigate(feature: string){
     this.loadedFeature = feature;
