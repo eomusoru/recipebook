@@ -11,7 +11,7 @@ import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesComponent } from './recipes.component';
 import { DropdownDirective } from './../shared/dropdown.directive';
 
-import { SharedModule } from './../shared/shared.model';
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
     declarations: [
