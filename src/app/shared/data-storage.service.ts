@@ -15,7 +15,6 @@ export class DataStorageService {
 
     storeRecipes(){
         const header = new Headers({'Content-Type': 'application/json'});
-
         return this.http.put('https://recipebook-f9c72.firebaseio.com/recipes.json', this.recipeService.getRecipes(), header);
     }
 
