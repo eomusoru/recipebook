@@ -1,4 +1,3 @@
-import { AuthService } from './../../auth/auth.service';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from './../recipe.service';
 import { ActivatedRoute, Params, Router, ActivatedRouteSnapshot } from '@angular/router';
@@ -17,8 +16,7 @@ export class RecipeEditComponent implements OnInit {
 
   constructor( private route: ActivatedRoute, 
                private recipeService: RecipeService,
-               private router: Router,
-               private authService: AuthService) { }
+               private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -74,6 +72,10 @@ export class RecipeEditComponent implements OnInit {
   onDeleteIngredient(index: number){
     // removeAt removes the controller at position specified
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
+  getIngredientsControls(){
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
   private initForm(){

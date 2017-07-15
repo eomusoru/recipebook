@@ -16,7 +16,7 @@
       </button>
             <ul class="dropdown-menu">
                 <li><a (click)="addToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
-                <ng-template [ngIf]='authService.isAuthenticated()'>
+                <ng-template [ngIf]='isAuthenticated()'>
                     <li><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
                     <li><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
                 </ng-template>

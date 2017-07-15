@@ -8,7 +8,9 @@ import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesComponent } from './recipes.component';
 
 const recipesRoutes: Routes = [
-    { path: '', component: RecipesComponent, children: [    // by default this path would be `recipes`, but since we load it laizly, we keep it empty, and all from now on, will be relative to `recipes`
+    { path: '', component: RecipesComponent, children: [    
+        // by default this path would be `recipes`, but since we load it laizly, 
+        // we keep it empty, and all from now on, will be relative to `recipes`
         { path: '', component: RecipeStartComponent },
         { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
         { path: ':id', component: RecipeDetailComponent },
@@ -18,7 +20,9 @@ const recipesRoutes: Routes = [
 
 @NgModule({
     imports: [ RouterModule.forChild(recipesRoutes) ],
-    exports: [ RouterModule ]
+    exports: [ RouterModule ],
+    providers: [ AuthGuard ] 
+    // AuthGuard is used only on the routers from the recipes. 
 })
 
 export class RecipesRoutingModule {

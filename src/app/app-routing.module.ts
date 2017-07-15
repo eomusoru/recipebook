@@ -1,7 +1,7 @@
 import { HomeComponent } from './core/home/home.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
@@ -12,7 +12,8 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-    imports: [ RouterModule.forRoot(appRoutes) ], 
+    // preloading strategy is going to load all your module, after the required module are loaded and the app is ready with your default loading strategy. It's kind of loading your required module, and after that, load ca loadChildren modules
+    imports: [ RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})], 
     exports: [ RouterModule ]
 })
 
