@@ -1,5 +1,5 @@
 import { AuthService } from './../auth/auth.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 
@@ -18,10 +18,19 @@ export class DataStorageService {
         const token = this.authService.getToken();
         const params = new HttpParams().set('auth', token);
 
-        return this.httpClient.put('https://recipebook-f9c72.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
-          observe: 'body',
+        const req = new HttpRequest('PUT', 'https://recipebook-f9c72.firebaseio.com/recipes.json', this. recipeService.getRecipes(), {
+          reportProgress: true,
           params: params
         });
+
+        return this.httpClient.request(req);
+
+        // return this.httpClient.put('https://recipebook-f9c72.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
+        //   observe: 'body',
+        //   params: params
+        // });
+
+
     }
 
     // we get the recipes if we have a token
