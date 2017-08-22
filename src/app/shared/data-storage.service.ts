@@ -18,19 +18,9 @@ export class DataStorageService {
         const token = this.authService.getToken();
         const params = new HttpParams().set('auth', token);
 
-        const req = new HttpRequest('PUT', 'https://recipebook-f9c72.firebaseio.com/recipes.json', this. recipeService.getRecipes(), {
-          reportProgress: true,
-          params: params
-        });
+        const req = new HttpRequest('PUT', 'https://recipebook-f9c72.firebaseio.com/recipes.json', this. recipeService.getRecipes(), { reportProgress: true});
 
         return this.httpClient.request(req);
-
-        // return this.httpClient.put('https://recipebook-f9c72.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
-        //   observe: 'body',
-        //   params: params
-        // });
-
-
     }
 
     // we get the recipes if we have a token
@@ -41,7 +31,6 @@ export class DataStorageService {
         this.httpClient.get<Recipe[]>('https://recipebook-f9c72.firebaseio.com/recipes.json', {
           observe: 'body',
           responseType: 'json',
-          params: params
         })
         .map(
             (recipes) => {
