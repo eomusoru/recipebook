@@ -6,28 +6,31 @@ import { AppRoutingModule } from './../app-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { AuthInterceptor } from '../shared/auth.interceptor';
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
-    declarations:[
+    declarations: [
         HeaderComponent,
         HomeComponent
     ],
-    imports:[
+    imports: [
         SharedModule,
         AppRoutingModule
     ],
-    exports:[
+    exports: [
         AppRoutingModule,
         HeaderComponent //because we use the app-header in the app.component.html
     ],
-    providers: [ 
-        // we have this in the core module, because either on the main core, or in the app.module.ts, 
+    providers: [
+        // we have this in the core module, because either on the main core, or in the app.module.ts,
         // we would get the same instance of the services on each module we would separatly provide
-        ShoppingListService, 
-        RecipeService, 
-        DataStorageService, 
-        AuthService
+        ShoppingListService,
+        RecipeService,
+        DataStorageService,
+        AuthService,
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     ]
 })
 export class CoreModule{
