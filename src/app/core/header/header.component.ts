@@ -1,7 +1,7 @@
 import { DataStorageService } from './../../shared/data-storage.service';
 import { AuthService } from './../../auth/auth.service';
-import { Response } from '@angular/http';
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -12,10 +12,11 @@ export class HeaderComponent {
 
     constructor(private dataStorageSv: DataStorageService,
                 private authService: AuthService){}
-    
+
     onSave(){
       this.dataStorageSv.storeRecipes().subscribe(
-        (response: Response) => {
+        (response) => {
+          // sent is event sent
           console.log(response);
         }
       );

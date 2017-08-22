@@ -1,6 +1,5 @@
 import { AuthService } from './../auth/auth.service';
-import { Resolve } from '@angular/router';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 
@@ -11,28 +10,35 @@ import { Recipe } from './../recipes/recipe.model';
 @Injectable()
 
 export class DataStorageService {
-    constructor(private http: Http, 
+    constructor(private httpClient: HttpClient,
                 private recipeService: RecipeService,
                 private authService: AuthService){}
 
     storeRecipes(){
-        const header = new Headers({'Content-Type': 'application/json'});
         const token = this.authService.getToken();
-        return this.http.put('https://recipebook-f9c72.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(), header);
+        const params = new HttpParams().set('auth', token);
+
+        return this.httpClient.put('https://recipebook-f9c72.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
+          observe: 'body',
+          params: params
+        });
     }
 
     // we get the recipes if we have a token
     getStoredRecipes(){
         const token = this.authService.getToken();
-        
-        this.http.get('https://recipebook-f9c72.firebaseio.com/recipes.json?auth=' + token)
+        const params = new HttpParams().set('auth', token);
+
+        this.httpClient.get<Recipe[]>('https://recipebook-f9c72.firebaseio.com/recipes.json', {
+          observe: 'body',
+          responseType: 'json',
+          params: params
+        })
         .map(
-            (response: Response) => {
-                const recipes: Recipe[] = response.json();
-                
+            (recipes) => {
                 // if not ingredients added in the db, fake it
-                for(let recipe of recipes){
-                    if(!recipe['ingredients']){
+                for (const recipe of recipes){
+                    if (!recipe['ingredients']){
                         recipe['ingredients'] = [];
                     }
                 }
@@ -40,7 +46,7 @@ export class DataStorageService {
             }
         )
         .subscribe(
-            (recipes: Recipe[]) => {
+            (recipes) => {
                 this.recipeService.setRecipes(recipes);
             }
         )
