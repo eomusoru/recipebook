@@ -3,17 +3,13 @@ import { Subject } from 'rxjs/Subject';
 import { EventEmitter } from '@angular/core';
 
 export class ShoppingListService{
-    ingredientsChanged = new Subject<Ingredient[]>(); // Set a flag which will inform us about the fact that the ingredients array is changed. 
+    ingredientsChanged = new Subject<Ingredient[]>(); // Set a flag which will inform us about the fact that the ingredients array is changed.
     startedEditing = new Subject<number>(); // Set a watcher to detect when we want to edit one ingredient (click on it)
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
         new Ingredient('Tomatoes', 10)
     ];
-
-    getIngredients(){
-        return this.ingredients.slice();
-    }
 
     getIngredient(index: number){
         return this.ingredients[index];
@@ -37,5 +33,5 @@ export class ShoppingListService{
     deleteIngredient(index: number){
         this.ingredients.splice(index, 1);
         this.ingredientsChanged.next(this.ingredients.slice());
-    } 
+    }
 }
