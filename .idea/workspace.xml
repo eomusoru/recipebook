@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eee0f246-76a4-44ab-8f53-f93e5e5b2a55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts" afterPath="$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/recipes/recipe.service.ts" afterPath="$PROJECT_DIR$/src/app/recipes/recipe.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.actions.ts" afterPath="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.actions.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.reducers.ts" afterPath="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.reducers.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -32,12 +31,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recipe.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="recipe.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="458">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recipe-detail.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="819">
+              <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#56#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,6 +167,7 @@
         <option value="$PROJECT_DIR$/src/app/shopping-list/shopping-list.component.ts" />
         <option value="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.actions.ts" />
         <option value="$PROJECT_DIR$/src/app/shopping-list/store/shopping-list.reducers.ts" />
+        <option value="$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts" />
         <option value="$PROJECT_DIR$/src/app/recipes/recipe.service.ts" />
       </list>
     </option>
@@ -270,6 +284,14 @@
               <item name="recipebook" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="recipes" type="462c0819:PsiDirectoryNode" />
+              <item name="recipe-detail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recipebook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recipebook" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -345,12 +367,12 @@
       <option name="presentableId" value="Default" />
       <updated>1500535179537</updated>
       <workItem from="1500535187763" duration="648000" />
-      <workItem from="1503381286768" duration="30167000" />
+      <workItem from="1503381286768" duration="31149000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30815000" />
+    <option name="totallyTimeSpent" value="31797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1680" y="0" width="1920" height="1080" extended-state="0" />
@@ -387,7 +409,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/recipes/recipe.service.ts</url>
-          <line>47</line>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -685,9 +707,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="458">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/recipes/recipe-detail/recipe-detail.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

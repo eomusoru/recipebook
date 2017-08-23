@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
 
-@Injectable()
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
 
@@ -34,8 +30,6 @@ export class RecipeService {
             ])
       ];
 
-    constructor (private store: Store<{shoppingList: {ingredients: Ingredient[]}}>){ }
-
     setRecipes(recipes: Recipe[]){
         this.recipes = recipes;
         this.recipesChanged.next(this.recipes.slice());
@@ -49,13 +43,8 @@ export class RecipeService {
         return this.recipes[id];
     }
 
-    addIngredients(ingredients: Ingredient[]){
-      this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
-    }
-
     addRecipe(recipe: Recipe){
         this.recipes.push(recipe);
-        // set an observer of type Subject and inform that a new Recipe was added, and provide a new fresh .slice copy of the recipe FormArray
 
         // same for updateRecipe method
         this.recipesChanged.next(this.recipes.slice());
