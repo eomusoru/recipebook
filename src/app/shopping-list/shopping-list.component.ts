@@ -1,8 +1,10 @@
 import { Subscription } from 'rxjs/Subscription';
-import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,22 +12,22 @@ import { ShoppingListService } from './shopping-list.service';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredients = [];
-  newIngredient: Ingredient; 
+  shoppingListState: Observable<{shoppingListState: Ingredient[]}>;
   private subscription: Subscription;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService, private store: Store<{shoppingList: {shoppingListState: Ingredient[]}}>) { }
 
   ngOnInit() {
-    this.ingredients = this.shoppingListService.getIngredients();
+    // select is returning an observable that contains a slice of the store shoppingList
+    this.shoppingListState = this.store.select('shoppingList');
 
-    // When a new ingredient is added, we catch the EventEmitter that inform us about this change,
-    // and we just refresh the array, which is actually a copy of the original array an the not original itself
-    this.subscription = this.shoppingListService.ingredientsChanged.subscribe(
-      (ingredients: Ingredient[]) => {
-        this.ingredients = ingredients;
-      }
-    );
+    // // When a new ingredient is added, we catch the EventEmitter that inform us about this change,
+    // // and we just refresh the array, which is actually a copy of the original array an the not original itself
+    // this.subscription = this.shoppingListService.ingredientsChanged.subscribe(
+    //   (shoppingListState: Ingredient[]) => {
+    //     this.shoppingListState = shoppingListState;
+    //   }
+    // );
   }
 
   ngOnDestroy() {
@@ -34,6 +36,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   onEditItem(index: number){
     this.shoppingListService.startedEditing.next(index); // emit the new values of the index using startedEditing subscription from ShoppingListService
-    
+
   }
 }
