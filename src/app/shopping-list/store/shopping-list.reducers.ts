@@ -18,6 +18,12 @@ export function ShoppingListReducers(state = initialState, action: ShoppingListA
         ingredients: [...state.ingredients, action.payload]
       };
 
+    case ShoppingListActions.ADD_INGREDIENTS:
+      return{
+        ...state,
+        ingredients: [...state.ingredients, ...action.payload]
+      }
+
     default:
       return state;
   }
