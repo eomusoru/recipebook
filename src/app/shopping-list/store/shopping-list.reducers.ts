@@ -20,6 +20,7 @@ const initialState: State = {
   editedIngredientIndex: -1
 }
 
+// REDUCER
 // set the default initial state
 export function ShoppingListReducers(state = initialState, action: ShoppingListActions.ShoppingListActions){
   switch (action.type){
@@ -47,7 +48,9 @@ export function ShoppingListReducers(state = initialState, action: ShoppingListA
 
       return{
         ...state,
-        ingredients: ingredients
+        ingredients: ingredients,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       }
 
     case ShoppingListActions.DELETE_INGREDIENT:
@@ -56,7 +59,9 @@ export function ShoppingListReducers(state = initialState, action: ShoppingListA
 
       return{
         ...state,
-        ingredients: oldIngredients
+        ingredients: oldIngredients,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       }
 
     case ShoppingListActions.START_EDIT:
@@ -66,6 +71,13 @@ export function ShoppingListReducers(state = initialState, action: ShoppingListA
         ...state,
         editedIngredient: editedIngredient,
         editedIngredientIndex: action.payload
+      }
+
+    case ShoppingListActions.STOP_EDIT:
+      return {
+        ...state,
+        editedIngredient: null,
+        editedIngredientIndex: -1
       }
 
     default:

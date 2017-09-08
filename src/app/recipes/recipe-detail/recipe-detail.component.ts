@@ -1,10 +1,10 @@
-import { AuthService } from './../../auth/auth.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromShoppingList from '../../shopping-list/store/shopping-list.reducers';
-
+import { AuthService } from './../../auth/auth.service';
 import { Recipe } from '../recipe.model' ;
 import { RecipeService } from '../recipe.service';
 
