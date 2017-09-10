@@ -1,8 +1,7 @@
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from './../recipe.service';
-import { ActivatedRoute, Params, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -14,7 +13,7 @@ export class RecipeEditComponent implements OnInit {
   editMode =  false;
   recipeForm: FormGroup;
 
-  constructor( private route: ActivatedRoute, 
+  constructor( private route: ActivatedRoute,
                private recipeService: RecipeService,
                private router: Router) { }
 
@@ -23,7 +22,7 @@ export class RecipeEditComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
-        
+
         this.initForm();
       }
     );
@@ -34,8 +33,8 @@ export class RecipeEditComponent implements OnInit {
     // Since newRecipe will have the exactly same fields, we pass as edit / add recipe argument
     // the form value like this: this.recipeForm.value
     // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'], 
-    //   this.recipeForm.value['description'], 
+    //   this.recipeForm.value['name'],
+    //   this.recipeForm.value['description'],
     //   this.recipeForm.value['imagePath'],
     //   this.recipeForm.value['ingredients']
     // );
@@ -62,7 +61,7 @@ export class RecipeEditComponent implements OnInit {
       new FormGroup({
         'name': new FormControl(null, Validators.required),
         'amount': new FormControl(null, [
-          Validators.required, 
+          Validators.required,
           Validators.pattern(/^[1-9]+[0-9]*$/)
         ])
       })
@@ -87,11 +86,11 @@ export class RecipeEditComponent implements OnInit {
     // if the user is in edit mode, we just past the editing values to the Reactive Form fields
     if(this.editMode){
       const recipe = this.recipeService.getRecipe(this.id);
-      
+
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
-  
+
       // check if the loaded recipe contains have ingredients
       if(recipe['ingredients']){
         for(let ingredient of recipe.ingredients){
@@ -100,7 +99,7 @@ export class RecipeEditComponent implements OnInit {
             new FormGroup({
               'name': new FormControl(ingredient.name, Validators.required),
               'amount': new FormControl(ingredient.amount, [
-                Validators.required, 
+                Validators.required,
                 Validators.pattern(/^[1-9]+[0-9]*$/)
               ])
             })

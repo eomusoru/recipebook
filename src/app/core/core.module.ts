@@ -1,4 +1,3 @@
-import { AuthService } from './../auth/auth.service';
 import { DataStorageService } from './../shared/data-storage.service';
 import { RecipeService } from './../recipes/recipe.service';
 import { AppRoutingModule } from './../app-routing.module';
@@ -28,7 +27,6 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
         // we would get the same instance of the services on each module we would separatly provide
         RecipeService,
         DataStorageService,
-        AuthService,
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
       { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
     ]

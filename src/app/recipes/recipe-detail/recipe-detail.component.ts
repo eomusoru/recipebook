@@ -2,7 +2,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AuthService } from './../../auth/auth.service';
 import { Recipe } from '../recipe.model' ;
 import { RecipeService } from '../recipe.service';
 import { Observable } from "rxjs/Observable";
@@ -25,7 +24,6 @@ export class RecipeDetailComponent implements OnInit {
   constructor( private recipeService: RecipeService,
                private route: ActivatedRoute,
                private router: Router,
-               private authService: AuthService,
                private store: Store<fromApp.AppState> ) { }
 
   ngOnInit() {
