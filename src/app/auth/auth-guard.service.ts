@@ -12,7 +12,9 @@ export class AuthGuard implements CanActivate{
 
   // if guard is true allow the page, else redirect it on the recipes page
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.store.select('auth').map((authState: fromAuth.State) => {
+    return this.store.select('auth')
+      .take(1)
+      .map((authState: fromAuth.State) => {
       return authState.authenticated;
     });
   }
