@@ -1,10 +1,13 @@
 import { AuthService } from './../auth/auth.service';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from "@ngrx/store";
 import 'rxjs/Rx';
 
 import { RecipeService } from './../recipes/recipe.service';
 import { Recipe } from './../recipes/recipe.model';
+import * as fromApp from '../store/app.reducers';
+import * as fromAuth from '../auth/store/auth.reducers';
 
 // because we inject Http service into DataStorageService
 @Injectable()
@@ -12,7 +15,8 @@ import { Recipe } from './../recipes/recipe.model';
 export class DataStorageService {
     constructor(private httpClient: HttpClient,
                 private recipeService: RecipeService,
-                private authService: AuthService){}
+                private authService: AuthService,
+                private store: Store<fromApp.AppState>){}
 
     storeRecipes(){
         const token = this.authService.getToken();
