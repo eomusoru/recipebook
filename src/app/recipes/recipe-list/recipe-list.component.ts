@@ -1,12 +1,10 @@
-import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
 import * as fromApp from '../../store/app.reducers';
 import * as fromAuth from '../../auth/store/auth.reducers';
+import * as fromRecipe from '../store/recipe.reducers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -14,29 +12,19 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit, OnDestroy {
+export class RecipeListComponent implements OnInit {
   auth: Observable<fromAuth.State>;
-  recipes: Recipe[];
-  subscription: Subscription;
+  recipeState: Observable<fromRecipe.State>;
 
-  constructor(private recipeService: RecipeService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
-              private store: Store<fromApp.AppState>) { }
+              private store: Store<fromApp.AppState>,
+              private storeR: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {
-    this.subscription = this.recipeService.recipesChanged.subscribe(
-      (recipes: Recipe[]) => {
-        this.recipes = recipes;
-      }
-    );
-    this.recipes = this.recipeService.getRecipes();
-    this.auth = this.store.select('auth');
-  }
+    this.recipeState = this.storeR.select('recipes');
 
-  ngOnDestroy() {
-    // avoid memory leaks by unsubscribing each time we subscribe
-    this.subscription.unsubscribe();
+    this.auth = this.store.select('auth');
   }
 
   onNewRecipe(){

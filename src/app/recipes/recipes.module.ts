@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
@@ -12,6 +13,7 @@ import { RecipesComponent } from './recipes.component';
 import { DropdownDirective } from './../shared/dropdown.directive';
 
 import { SharedModule } from './../shared/shared.module';
+import { recipeReducer } from "./store/recipe.reducers";
 
 @NgModule({
     declarations: [
@@ -26,10 +28,11 @@ import { SharedModule } from './../shared/shared.module';
         CommonModule,
         ReactiveFormsModule,
         RecipesRoutingModule,
-        SharedModule
+        SharedModule,
+        StoreModule.forFeature('recipes', recipeReducer) // this will inject the recipes featureName state into the global store and use recipeReducer as a reducer for it
     ]
 })
- 
+
 export class RecipesModule {
 
 }
