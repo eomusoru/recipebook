@@ -13,7 +13,9 @@ import { RecipesComponent } from './recipes.component';
 import { DropdownDirective } from './../shared/dropdown.directive';
 
 import { SharedModule } from './../shared/shared.module';
-import { recipeReducer } from "./store/recipe.reducers";
+import { recipeReducer } from './store/recipe.reducers';
+import { EffectsModule } from "@ngrx/effects";
+import { RecipeEffects } from "./store/recipe.effects";
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import { recipeReducer } from "./store/recipe.reducers";
         ReactiveFormsModule,
         RecipesRoutingModule,
         SharedModule,
-        StoreModule.forFeature('recipes', recipeReducer) // this will inject the recipes featureName state into the global store and use recipeReducer as a reducer for it
+        StoreModule.forFeature('recipes', recipeReducer), // this will inject the recipes featureName state into the global store and use recipeReducer as a reducer for it
+        EffectsModule.forFeature([RecipeEffects])
     ]
 })
 

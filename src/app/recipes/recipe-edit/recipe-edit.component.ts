@@ -2,7 +2,6 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { RecipeService } from './../recipe.service';
 import * as fromRecipe from './../store/recipe.reducers';
 import * as RecipeActions from './../store/recipe.actions';
 import { Store } from "@ngrx/store";
@@ -18,7 +17,6 @@ export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;
 
   constructor( private route: ActivatedRoute,
-               private recipeService: RecipeService,
                private router: Router,
                private store: Store<fromRecipe.FeatureState>) { }
 
@@ -34,16 +32,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit(){
-    // either updated or brand new, in both cases we need a new Recipe item
-    // Since newRecipe will have the exactly same fields, we pass as edit / add recipe argument
-    // the form value like this: this.recipeForm.value
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']
-    // );
-
     if(this.editMode){
       this.store.dispatch(new RecipeActions.UpdateRecipe({index: this.id, updatedRecipe: this.recipeForm.value}));
     } else {
@@ -60,7 +48,6 @@ export class RecipeEditComponent implements OnInit {
     this.editMode = false;
   }
 
- // dyanmic handle new ingredients
   onAddIngredients(){
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({

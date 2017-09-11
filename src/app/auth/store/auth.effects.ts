@@ -5,7 +5,7 @@ import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/switchMap';
 import "rxjs/add/operator/mergeMap";
 
@@ -15,13 +15,12 @@ import * as AuthActions from './auth.actions';
 export class AuthEffects {
   @Effect()
   authSignup = this.actions$
-    // in oftype we check if the action is a specific type
     .ofType(AuthActions.TRY_SIGNUP)
     .map((action: AuthActions.TrySignup) => {
       return action.payload;
     })
     .switchMap((authData: {username: string, password: string}) => {
-      // convert the following like from a firebase promite to an observable, because we are going to need such an observable later
+      // convert from a firebase promise to an observable
       return fromPromise(firebase.auth().createUserWithEmailAndPassword(authData.username, authData.password));
     })
     .switchMap(() => {

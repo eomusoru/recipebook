@@ -1,5 +1,3 @@
-import { DataStorageService } from './../shared/data-storage.service';
-import { RecipeService } from './../recipes/recipe.service';
 import { AppRoutingModule } from './../app-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { HomeComponent } from './home/home.component';
@@ -25,8 +23,6 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
     providers: [
         // we have this in the core module, because either on the main core, or in the app.module.ts,
         // we would get the same instance of the services on each module we would separatly provide
-        RecipeService,
-        DataStorageService,
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
       { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
     ]

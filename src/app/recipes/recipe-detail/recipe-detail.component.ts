@@ -8,6 +8,7 @@ import * as fromAuth from '../../auth/store/auth.reducers';
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from './../store/recipe.actions';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-recipe-detail',
