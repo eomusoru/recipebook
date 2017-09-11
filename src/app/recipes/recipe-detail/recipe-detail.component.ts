@@ -1,15 +1,13 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-
-import { RecipeService } from '../recipe.service';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromAuth from '../../auth/store/auth.reducers';
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from './../store/recipe.actions';
-import "rxjs/add/operator/switchMap";
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -21,8 +19,7 @@ export class RecipeDetailComponent implements OnInit {
   recipeState: Observable<fromRecipe.State>;
   id: number;
 
-  constructor( private recipeService: RecipeService,
-               private route: ActivatedRoute,
+  constructor( private route: ActivatedRoute,
                private router: Router,
                private store: Store<fromRecipe.FeatureState>) { }
 
@@ -37,6 +34,7 @@ export class RecipeDetailComponent implements OnInit {
     this.authState = this.store.select('auth');
   }
 
+  // take 1 because we don't want to subscribe that to each store change, but only once on that change
   addToShoppingList(){
     this.store.select('recipes')
       .take(1).subscribe(

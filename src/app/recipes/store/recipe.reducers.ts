@@ -4,6 +4,7 @@ import { Ingredient } from "../../shared/ingredient.model";
 import * as fromApp from '../../store/app.reducers';
 
 // this interface is a similar one as the app.reducer.ts and we do this because it's an interface only for our feature app and it's not for the entire app
+// basically this FeatureState would contain the entire app state, with this extension inside it
 export interface FeatureState extends fromApp.AppState{
   recipes: State
 }
